@@ -42,10 +42,12 @@ class Address(models.Model):
 class User(AbstractBaseUser):
     username = models.CharField(max_length=255, blank=False, null=False)
     email = models.EmailField(max_length=255, unique=True)
-    profile_image = models.ImageField(upload_to='profile-image/',null=False, blank=False)
+    name = models.CharField(max_length=255, blank=True, null=False)
+    profile_image = models.ImageField(upload_to='profile-image/',null=True, blank=True)
     phone = models.CharField(max_length=255, blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_admin = models.BooleanField(default=False)
     objects = UserManager()
     USERNAME_FIELD = 'email'
 
